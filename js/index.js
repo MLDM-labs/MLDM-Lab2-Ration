@@ -94,7 +94,45 @@ function getDescription()
     let rawsCount = matrix_with_n.length;
     let columnsCount = matrix_with_n[0].split(/ |,|/).length;
 
-    if((rawsCount > 0) & (columnsCount > 0))
+    //let splitedMatrix = input_matrix.split(/\n/);
+
+    let splitedMatrix = input_matrix.split('\n');
+    for(let i = 0; i < splitedMatrix.length; i++)
+        splitedMatrix[i] = splitedMatrix[i].split(' ');
+
+    let isNumber = true;
+    for(let x = 0; x < splitedMatrix.length; x++)
+        for(let y = 0; y < splitedMatrix[x].length; y++)
+        {
+            if(splitedMatrix[x][y] !== '0' && splitedMatrix[x][y] !== '1')
+            {
+                isNumber = false;
+                break;
+            }
+        }
+    if(!isNumber)
+    {
+        document.getElementById("output").innerHTML = "The matrix must consist of natural numbers from zero to one";
+        return;
+    }
+
+    let isRectangular = true;
+    for(let x = 1; x < splitedMatrix.length; x++)
+    {
+        if(splitedMatrix[x].length !== splitedMatrix[x - 1].length)
+        {
+            isRectangular = false;
+            break;
+        }
+    }
+    if(!isRectangular)
+    {
+        document.getElementById("output").innerHTML = "The matrix must be rectangular";
+        return;
+    }
+
+
+    if((rawsCount > 0) && (columnsCount > 0))
     {
         let output = "This relation is";
         let beforeIsTrue = false;
@@ -134,5 +172,4 @@ function getDescription()
     {
         document.getElementById("output").innerHTML = "Please, enter the matrix";
     }
-
 }
