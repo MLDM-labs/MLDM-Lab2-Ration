@@ -94,8 +94,6 @@ function getDescription()
     let rawsCount = matrix_with_n.length;
     let columnsCount = matrix_with_n[0].split(/ |,|/).length;
 
-    //let splitedMatrix = input_matrix.split(/\n/);
-
     let splitedMatrix = input_matrix.split('\n');
     for(let i = 0; i < splitedMatrix.length; i++)
         splitedMatrix[i] = splitedMatrix[i].split(' ');
